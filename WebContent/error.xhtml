@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<title>Login</title>
+</h:head>
+<h:body style="padding-top: 80px">
+	<b:navBar brand="Embalajes del Sureste" brandHref="index.xhtml"
+		fixed="top" inverse="true">
+		<b:navbarLinks pull="left">
+			<b:navLink value="Inicio" href="index.xhtml"></b:navLink>
+			<b:navLink value="Sobre nosotros" href="#about"></b:navLink>
+			<b:navLink value="Contacto" href="#contact"></b:navLink>
+		</b:navbarLinks>
+	</b:navBar>
+	<b:container>
+		<b:form>
+
+
+
+
+			<b:row style="padding-top: 80px">
+				<b:column offset-md="3" offset-xs="2" col-xs="6" col-md="6">
+					<b:column medium-screen="full">
+
+						<b:well>
+
+							<h4>Nombre de usuario y/o contraeña incorrectos</h4>
+							<b:commandButton action="login" value="Volver" offset-md="10"
+								offset-sm="9" offset-xs="8" look="primary"
+								style="margin-top: 15px" />
+
+						</b:well>
+					</b:column>
+
+				</b:column>
+			</b:row>
+
+
+
+
+
+			<b:navBar sticky="true"
+				brand=" @2020 Raúl Luján - José Martínez 2ªDAM IES Alquerías"
+				brand-style="font-size: 12px; align-self: center;" fixed="bottom">
+				<b:navbarLinks pull="right">
+					<b:navLink style="margin-bottom: 20px; padding: 0; opacity: 0.7">
+						<b:row>
+							<b:link>
+								<b:image height="35px" library="social" name="twitter.svg"
+									style="margin-right: 10px" />
+							</b:link>
+							<b:link>
+								<b:image height="35px" library="social" name="facebook.svg"
+									style="margin-right: 10px" />
+							</b:link>
+							<b:link>
+								<b:image height="35px" library="social" name="linkedin.svg"
+									style="margin-right: 10px" />
+							</b:link>
+							<b:link>
+								<b:image height="35px" library="social" name="whatsapp.svg" />
+							</b:link>
+						</b:row>
+					</b:navLink>
+				</b:navbarLinks>
+			</b:navBar>
+		</b:form>
+	</b:container>
+</h:body>
+</html>

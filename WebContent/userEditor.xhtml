@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<title>Usuarios</title>
+</h:head>
+<h:body style="padding-top: 80px  ; padding-bottom: 80px">
+	<f:event type="preRenderView" listener="#{usuario.preparaPagina()}" />
+	<b:navBar brand="Embalajes del Sureste" brandHref="index.xhtml"
+		fixed="top" inverse="true">
+		<b:navbarLinks pull="left">
+			<b:navLink value="Inicio" href="index.xhtml"></b:navLink>
+			<b:navLink value="Sobre nosotros" href="info.xhtml"></b:navLink>
+			<b:navLink value="Contacto" href="contact.xhtml"></b:navLink>
+		</b:navbarLinks>
+		<b:navbarLinks pull="right">
+			<b:navLink value="Administrar empresa" href="loginGerente.xhtml" />
+			<b:navLink value="Cerrar sesión" pull="right" href="login.xhtml"
+				icon-awesome="sign-out"></b:navLink>
+		</b:navbarLinks>
+	</b:navBar>
+	<b:container>
+		<b:form>
+			<b:row>
+				<b:column col-xs="full" col-sm="10" offset-sm="1" col-md="8"
+					offset-md="2">
+					<b:well>
+						<h3>Seleccione un usuario</h3>
+						<b:row>
+							<b:column span="4">
+								<h:selectManyListbox size="8" value="#{usuario.selectUser}"
+									onclick="#{usuario.seleccionUsuario()}" update="text"
+									style="overflow: hidden">
+									<f:ajax event="valueChange" execute="@this"
+										render="@this usNom usApellidos usPass usRol usHab" />
+									<f:selectItems value="#{usuario.listaNombresUsuarios}" />
+
+								</h:selectManyListbox>
+							</b:column>
+						</b:row>
+						<b:row>
+							<b:column>
+								<h4>Nombre:</h4>
+								<h:outputText id="usNom" value="#{usuario.usuario.login}" />
+							</b:column>
+
+						</b:row>
+						<b:row>
+							<b:column>
+								<h4>Apellidos:</h4>
+								<h:outputText id="usApellidos" value="#{usuario.usuario.apellidos}" />
+							</b:column>
+
+						</b:row>
+						<b:row>
+							<b:column>
+								<h4>Contraseña:</h4>
+								<h:outputText id="usPass" value="#{usuario.usuario.pass}" />
+							</b:column>
+
+						</b:row>
+						<b:row>
+							<b:column>
+								<h4>Categoría:</h4>
+								<h:outputText id="usRol" value="#{usuario.usuario.rol}" />
+							</b:column>
+
+						</b:row>
+						<b:row>
+							<b:column>
+								<h4>Habilitado:</h4>
+								<h:outputText id="usHab" value="#{usuario.usuario.habilitado}" />
+							</b:column>
+
+						</b:row>
+						<b:buttonGroup style="padding-top: 15px">
+							<b:commandButton action="#{usuario.editarUser()}" look="primary"
+								tooltip="Editar usuario seleccionado">
+								<b:image name="edit.png" library="icons" height="20px"></b:image>
+							</b:commandButton>
+
+							<a id="atrigger" class="btn btn-primary" href="#confirmacionUser"
+								data-toggle="modal"><b:image name="delete.png"
+									library="icons" height="20px"
+									tooltip="Borrar usuario seleccionado"></b:image></a>
+
+							<b:commandButton action="#{usuario.anyadirUser()}" look="primary"
+								tooltip="Añadir nuevo usuario">
+								<b:image name="add.png" library="icons" height="20px"></b:image>
+							</b:commandButton>
+
+						</b:buttonGroup>
+
+
+					</b:well>
+									<b:commandButton action="loginGerente" value="Volver" offset-xs="10"
+					look="primary" />
+				</b:column>
+			</b:row>
+			<b:navBar sticky="true"
+				brand=" @2020 Raúl Luján - José Martínez 2ªDAM IES Alquerías"
+				brand-style="font-size: 12px; align-self: center;" fixed="bottom">
+				<b:navbarLinks pull="right">
+					<b:navLink style="margin-bottom: 20px; padding: 0; opacity: 0.7">
+						<b:row>
+							<b:link>
+								<b:image height="35px" library="social" name="twitter.svg"
+									style="margin-right: 10px" />
+							</b:link>
+							<b:link>
+								<b:image height="35px" library="social" name="facebook.svg"
+									style="margin-right: 10px" />
+							</b:link>
+							<b:link>
+								<b:image height="35px" library="social" name="linkedin.svg"
+									style="margin-right: 10px" />
+							</b:link>
+							<b:link>
+								<b:image height="35px" library="social" name="whatsapp.svg" />
+							</b:link>
+						</b:row>
+					</b:navLink>
+				</b:navbarLinks>
+			</b:navBar>
+		</b:form>
+	</b:container>
+	<b:modal id="confirmacionUser" title="Eliminar Usuario"
+		styleClass="modalPseudoClass">
+		<p>¿Seguro que quiere eliminar a este Usuario?</p>
+		<f:facet name="footer">
+			<b:form>
+				<b:button value="Cancelar" dismiss="modal" />
+				<b:commandButton value="Eliminar" action="#{usuario.eliminarUser()}"
+					look="primary" dismiss="modal" />
+			</b:form>
+		</f:facet>
+	</b:modal>
+</h:body>
+</html>

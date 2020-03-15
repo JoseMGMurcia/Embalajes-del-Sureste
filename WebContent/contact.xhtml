@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<title>Home</title>
+</h:head>
+<h:body style="padding-top: 120px">
+
+	<b:form>
+		<b:navBar brand="Embalajes del Sureste" brandHref="index.xhtml"
+			fixed="top" inverse="true">
+			<b:navbarLinks pull="left">
+				<b:navLink>
+					<b:commandButton value="Inicio" action="index.xhtml" look="primary" style="padding: 0" />
+				</b:navLink>
+				<b:navLink>
+					<b:commandButton value="Sobre nosotros" action="info.xhtml"
+						look="primary" style="padding: 0" />
+				</b:navLink>
+				<b:navLink>
+					<b:commandButton value="Contacto" action="contact.xhtml"
+						look="primary" style="padding: 0"/>
+				</b:navLink>
+			</b:navbarLinks>
+			<b:navbarLinks pull="right">
+				<b:navLink>
+					<b:commandButton value="Area de empleados" action="login.xhtml"
+						look="primary" style="padding: 0"/>
+				</b:navLink>
+			</b:navbarLinks>
+		</b:navBar>
+	</b:form>
+	<b:container>
+		<b:row>
+			<b:column col-xs="8" col-sm="8" col-md="8" offset="2" offset-xs="2">
+				<b:well>
+					<b:form>
+						<b:row>
+							<b:inputTextarea label="Mensaje" required="true"
+								required-message="Se debe incluir un mensaje" value="#{registro.mensaje}"></b:inputTextarea>
+							<b:inputText label="e-mail" required="true"
+								required-message="Se debe especificar un email"  value="#{registro.email}"></b:inputText>
+							<b:commandButton span="2" offset-sm="7" offset-md="9" value="Enviar"
+								look="primary" action="#{registro.enviarMail(true)}"></b:commandButton>
+						</b:row>
+
+					</b:form>
+
+				</b:well>
+
+
+
+			</b:column>
+
+
+		</b:row>
+
+
+
+
+		<b:navBar sticky="true"
+			brand=" @2020 Raúl Luján - José Martínez 2ªDAM IES Alquerías"
+			brand-style="font-size: 12px; align-self: center;" fixed="bottom">
+			<b:navbarLinks pull="right">
+				<b:navLink style="margin-bottom: 20px; padding: 0; opacity: 0.7">
+					<b:row>
+						<b:link>
+							<b:image height="35px" library="social" name="twitter.svg"
+								style="margin-right: 10px" />
+						</b:link>
+						<b:link>
+							<b:image height="35px" library="social" name="facebook.svg"
+								style="margin-right: 10px" />
+						</b:link>
+						<b:link>
+							<b:image height="35px" library="social" name="linkedin.svg"
+								style="margin-right: 10px" />
+						</b:link>
+						<b:link>
+							<b:image height="35px" library="social" name="whatsapp.svg" />
+						</b:link>
+					</b:row>
+				</b:navLink>
+			</b:navbarLinks>
+		</b:navBar>
+	</b:container>
+</h:body>
+</html>

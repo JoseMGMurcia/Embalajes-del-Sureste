@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<title>Resgistro</title>
+</h:head>
+<h:body style="padding-top: 120px">
+	<b:form>
+		<b:navBar brand="Embalajes del Sureste" brandHref="index.xhtml"
+			fixed="top" inverse="true">
+			<b:navbarLinks pull="left">
+				<b:navLink>
+					<b:commandButton value="Inicio" action="index.xhtml" look="primary"
+						style="padding: 0" />
+				</b:navLink>
+				<b:navLink>
+					<b:commandButton value="Sobre nosotros" action="info.xhtml"
+						look="primary" style="padding: 0" />
+				</b:navLink>
+				<b:navLink>
+					<b:commandButton value="Contacto" action="contact.xhtml"
+						look="primary" style="padding: 0" />
+				</b:navLink>
+			</b:navbarLinks>
+			<b:navbarLinks pull="right">
+				<b:navLink>
+					<b:commandButton value="Cancelar registro" action="login.xhtml"
+						look="primary" style="padding: 0" />
+				</b:navLink>
+			</b:navbarLinks>
+		</b:navBar>
+	</b:form>
+	<b:container>
+		<b:form>
+			<b:row>
+				<b:column col-xs="10" offset-xs="1" col-sm="6" offset-sm="3">
+					<b:well style="width:440px">
+						<b:carousel id="wizard" styleClass="wizardPseudoClass"
+							style="width:400px; padding-top:20px" startAnimation="false"
+							showIndicators="false" wrap="false">
+							<b:carouselItem style="width:400px; height:230px">
+								<b:panel title="Paso 1" look="primary">
+									<b:inputText label="Nombre" value="#{registro.login}" />
+									<b:inputText label="Apellidos"  value="#{registro.apellidos}" />
+								</b:panel>
+							</b:carouselItem>
+							<b:carouselItem style="width:400px;height:180px">
+								<b:panel title="Paso 2" look="warning">
+									<b:selectOneMenu label="Año de nacimiento">
+										<f:selectItems value="#{registro.yearItems}" />
+									</b:selectOneMenu>
+									<h:selectOneRadio selectedClass="selected" label="Sexo"
+										style="padding: 5px" tabindex="2">
+										<f:selectItems value="#{registro.sexItems}" />
+									</h:selectOneRadio>
+								</b:panel>
+							</b:carouselItem>
+							<b:carouselItem style="width:400px;height:310px">
+								<b:panel title="Paso 3" look="danger">
+									<b:inputSecret label="Contraseña" value="#{registro.pass1}" />
+									<b:inputSecret label="Repita Contraseña"
+										value="#{registro.pass2}" />
+								</b:panel>
+							</b:carouselItem>
+							<b:carouselItem style="width:400px;height:200px">
+								<b:panel title="Paso final" look="primary">
+									<b:inputText label="Email" />
+									<b:row>
+										<b:column span="1">
+											<b:selectBooleanCheckbox
+												required-message="Deve aceptar las términos y condiciones"
+												required="true" />
+										</b:column>
+										<b:column span="9">
+											<p style="height: 25px">Acepto los términos y condiciones</p>
+										</b:column>
+									</b:row>
+
+								</b:panel>
+							</b:carouselItem>
+							<b:carouselControl direction="right">
+								<b:button value="Anterior"
+									onclick="$('.wizardPseudoClass').carousel('prev');$('.wizardPseudoClass').carousel('pause');"
+									look="info" />
+							</b:carouselControl>
+							<b:carouselControl direction="left">
+								<b:button value="Siguiente" style="position:absolute;right:0px"
+									onclick="$('.wizardPseudoClass').carousel('next');$('.wizardPseudoClass').carousel('pause');"
+									look="success" />
+							</b:carouselControl>
+						</b:carousel>
+
+						<b:row style="padding-top: 30px">
+							<b:buttonGroup offset-xs="10" offset-sm="10" offset-md="10">
+								<b:commandButton action="#{registro.comprobarRegristro()}"
+									value="Enviar" look="primary" />
+							</b:buttonGroup>
+						</b:row>
+
+					</b:well>
+
+
+				</b:column>
+			</b:row>
+
+		</b:form>
+
+
+		<b:navBar sticky="true"
+			brand=" @2020 Raúl Luján - José Martínez 2ªDAM IES Alquerías"
+			brand-style="font-size: 12px; align-self: center;" fixed="bottom">
+			<b:navbarLinks pull="right">
+				<b:navLink style="margin-bottom: 20px; padding: 0; opacity: 0.7">
+					<b:row>
+						<b:link>
+							<b:image height="35px" library="social" name="twitter.svg"
+								style="margin-right: 10px" />
+						</b:link>
+						<b:link>
+							<b:image height="35px" library="social" name="facebook.svg"
+								style="margin-right: 10px" />
+						</b:link>
+						<b:link>
+							<b:image height="35px" library="social" name="linkedin.svg"
+								style="margin-right: 10px" />
+						</b:link>
+						<b:link>
+							<b:image height="35px" library="social" name="whatsapp.svg" />
+						</b:link>
+					</b:row>
+				</b:navLink>
+			</b:navbarLinks>
+		</b:navBar>
+	</b:container>
+</h:body>
+</html>

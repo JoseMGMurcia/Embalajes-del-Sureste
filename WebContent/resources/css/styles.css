@@ -1,0 +1,23 @@
+.text {
+	font-family: inherit;
+	font-size: 1.3em;
+}
+
+.inputText {
+	font-size: 1.1em;
+	border-radius: 5px;
+	padding: 7px;
+}
+
+.inputText:focus {
+	border-color: #ccffff;
+}
+
+.boton {
+	font-family: inherit;
+	color: #ffffff;
+	background: #395c82;
+	padding: 10px 18px;
+	border-color: #81b33a;
+	border-radius: 5px;
+}

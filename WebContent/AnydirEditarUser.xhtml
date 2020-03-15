@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<title>Usuarios</title>
+</h:head>
+<h:body style="padding-top: 80px  ; padding-bottom: 80px">
+	<b:navBar brand="Embalajes del Sureste" brandHref="index.xhtml"
+		fixed="top" inverse="true">
+		<b:navbarLinks pull="left">
+			<b:navLink value="Inicio" href="index.xhtml"></b:navLink>
+			<b:navLink value="Sobre nosotros" href="info.xhtml"></b:navLink>
+			<b:navLink value="Contacto" href="contact.xhtml"></b:navLink>
+		</b:navbarLinks>
+		<b:navbarLinks pull="right">
+			<b:navLink value="Administrar empresa" href="loginGerente.xhtml" />
+			<b:navLink value="Cerrar sesión" pull="right" href="doLogOut.xhtml"
+				icon-awesome="sign-out"></b:navLink>
+		</b:navbarLinks>
+	</b:navBar>
+	<b:container>
+		<b:form>
+			<b:row>
+				<b:column col-xs="full" col-sm="10" offset-sm="1" col-md="8"
+					offset-md="2">
+					<b:well>
+						<h3>Inserte los datos del nuevo usuario</h3>
+
+						<b:inputText label="Nombre Usuario" value="#{usuario.usuario.login}" />
+						
+						<b:inputText label="Apellidos" value="#{usuario.usuario.apellidos}" />
+
+						<b:inputSecret label="Contraseña" value="#{usuario.usuario.pass}"
+							disabled="#{!usuario.add}" />
+						<b:inputSecret label="Repita la contraseña"
+							value="#{usuario.repeatedPass}" rendered="#{usuario.add}" />
+
+						<b:switch value="#{usuario.empleado}" label="Empleado: "
+							on-text="Si" off-text=" No" onchange="ajax:kebabBean.onChange()"
+							update="@form">
+						</b:switch>
+
+						<b:switch value="#{usuario.habilitado}"
+							label="Permiso de entrada: " on-text="Si" off-text=" No"
+							onchange="ajax:kebabBean.onChange()" update="@form">
+						</b:switch>
+						<b:row>
+							<b:commandButton action="#{usuario.accionUser()}"
+								value="#{usuario.tarea}" look="primary" col-sm="3" col-xs="4" />
+							<b:commandButton action="#{usuario.revision()}" value="Volver"
+								offset-sm="7" offset-xs="5" col-sm="2" col-xs="3" look="primary" />
+						</b:row>
+
+
+					</b:well>
+				</b:column>
+			</b:row>
+			<b:navBar sticky="true"
+				brand=" @2020 Raúl Luján - José Martínez 2ªDAM IES Alquerías"
+				brand-style="font-size: 12px; align-self: center;" fixed="bottom">
+				<b:navbarLinks pull="right">
+					<b:navLink style="margin-bottom: 20px; padding: 0; opacity: 0.7">
+						<b:row>
+							<b:link>
+								<b:image height="35px" library="social" name="twitter.svg"
+									style="margin-right: 10px" />
+							</b:link>
+							<b:link>
+								<b:image height="35px" library="social" name="facebook.svg"
+									style="margin-right: 10px" />
+							</b:link>
+							<b:link>
+								<b:image height="35px" library="social" name="linkedin.svg"
+									style="margin-right: 10px" />
+							</b:link>
+							<b:link>
+								<b:image height="35px" library="social" name="whatsapp.svg" />
+							</b:link>
+						</b:row>
+					</b:navLink>
+				</b:navbarLinks>
+			</b:navBar>
+		</b:form>
+	</b:container>
+</h:body>
+</html>

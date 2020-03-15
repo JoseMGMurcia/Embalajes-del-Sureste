@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<title>Gerencia</title>
+</h:head>
+<h:body style="padding-top: 80px  ; padding-bottom: 80px">
+	<b:navBar brand="Embalajes del Sureste" brandHref="index.xhtml"
+		fixed="top" inverse="true">
+		<b:navbarLinks pull="left">
+			<b:navLink value="Inicio" href="index.xhtml"/>
+			<b:navLink value="Sobre nosotros" href="info.xhtml"/>
+			<b:navLink value="Contacto" href="contact.xhtml"/>
+		</b:navbarLinks>
+		<b:navbarLinks pull="right">
+			<b:navLink value="Administrar usuarios" href="userEditor.xhtml" />
+			<b:navLink value="Cerrar sesión" pull="right" href="doLogOut.xhtml"
+				icon-awesome="sign-out"/>
+		</b:navbarLinks>
+	</b:navBar>
+	<f:event type="preRenderView" listener="#{gerente.preparaPagina()}" />
+	<b:container>
+		<b:form>
+			<b:row style="padding-bottom: 80px">
+
+				<b:row>
+					<b:column col-xs="full" col-sm="10" col-md="8" offset-sm="1"
+						offset-md="2">
+						<b:well>
+
+							<h3>Seleccione un Producto</h3>
+							<b:row>
+								<b:column span="4">
+									<h:selectManyListbox
+										size="#{getente.listaNombresProductos.size()}"
+										value="#{gerente.selectProducto}"
+										onclick="#{gerente.seleccionProducto()}" update="text"
+										style="overflow: hidden">
+										<f:ajax event="valueChange" execute="@this"
+											render="@this prodNom prodDes" />
+										<f:selectItems value="#{gerente.listaNombresProductos}" />
+
+									</h:selectManyListbox>
+								</b:column>
+
+							</b:row>
+							<b:row>
+								<b:column>
+									<h4>Nombre:</h4>
+									<h:outputText id="prodNom" value="#{gerente.producto.nombre}" />
+								</b:column>
+
+							</b:row>
+							<b:row>
+								<b:column>
+									<h4>Descripción:</h4>
+									<h:outputText id="prodDes"
+										value="#{gerente.producto.descripcion}" />
+								</b:column>
+
+							</b:row>
+							<b:buttonGroup style="padding-top: 15px">
+								<b:commandButton action="#{gerente.editarProd()}" look="primary"
+									tooltip="Editar producto seleccionado">
+									<b:image name="edit.png" library="icons" height="20px"></b:image>
+								</b:commandButton>
+
+								<a id="atrigger" class="btn btn-primary"
+									href="#confirmacionProd" data-toggle="modal"><b:image
+										name="delete.png" library="icons" height="20px"
+										tooltip="Borrar producto seleccionado"></b:image></a>
+
+								<b:commandButton action="#{gerente.anyadirProd()}"
+									look="primary" tooltip="Añadir nuevo producto">
+									<b:image name="add.png" library="icons" height="20px"></b:image>
+								</b:commandButton>
+
+							</b:buttonGroup>
+
+						</b:well>
+
+					</b:column>
+				</b:row>
+				<b:row>
+					<b:column col-xs="full" col-sm="10" col-md="8" offset-sm="1"
+						offset-md="2">
+						<b:well>
+							<h3>Seleccione un Transportista</h3>
+							<h:selectManyListbox size="#{getente.listaNombresProv.size()}"
+								value="#{gerente.selectProv}"
+								onclick="#{gerente.seleccionProveedor()}"
+								style="overflow:hidden ">
+								<f:ajax render="@this proveNom proveTel proveCont " />
+								<f:selectItems value="#{gerente.listaNombresProveedores}" />
+							</h:selectManyListbox>
+
+							<b:row>
+								<b:column>
+									<h4>Nombre:</h4>
+									<h:outputText id="proveNom" value="#{gerente.proveedor.nombre}" />
+								</b:column>
+							</b:row>
+							<b:row>
+								<b:column>
+									<h4>Telefono:</h4>
+									<h:outputText id="proveTel"
+										value="#{gerente.proveedor.telefono}" />
+								</b:column>
+							</b:row>
+							<b:row>
+								<b:column>
+									<h4>Contacto:</h4>
+									<h:outputText id="proveCont"
+										value="#{gerente.proveedor.contacto}" />
+
+								</b:column>
+							</b:row>
+							<b:buttonGroup style="padding-top: 15px">
+								<b:commandButton action="#{gerente.editarProv()}" look="primary"
+									tooltip="Editar transportista seleccionado">
+									<b:image name="edit.png" library="icons" height="20px"></b:image>
+								</b:commandButton>
+
+
+								<a id="atrigger" class="btn btn-primary "
+									href="#confirmacionProv" data-toggle="modal"><b:image
+										name="delete.png" library="icons" height="20px"
+										tooltip="Borrar transportista seleccionado"></b:image></a>
+
+
+								<b:commandButton action="#{gerente.anyadirProv()}"
+									look="primary" tooltip="Añadir nuevo transportista">
+									<b:image name="add.png" library="icons" height="20px"></b:image>
+								</b:commandButton>
+							</b:buttonGroup>
+						</b:well>
+					</b:column>
+				</b:row>
+				<b:row>
+
+
+
+					<b:column col-xs="full" col-sm="10" col-md="8" offset-sm="1"
+						offset-md="2">
+						<b:well>
+
+							<h3>Seleccione una compra</h3>
+							<h:selectManyListbox size="#{getente.listaIdCompras.size()}"
+								value="#{gerente.selectCompra}"
+								onclick="#{gerente.seleccionCompra()}">
+								<f:ajax event="valueChange" execute="@this"
+									render="@this compProv compProd compFech compCant comPre" />
+								<f:selectItems value="#{gerente.listaIdCompras}" />
+							</h:selectManyListbox>
+
+							<b:row>
+								<b:column>
+									<h4>Transportista:</h4>
+									<h:outputText id="compProv"
+										value="#{gerente.compra.proveedor.nombre}" />
+								</b:column>
+
+							</b:row>
+							<b:row>
+								<b:column>
+									<h4>Nombre Producto:</h4>
+									<h:outputText id="compProd"
+										value="#{gerente.compra.producto.nombre}" />
+
+								</b:column>
+
+							</b:row>
+							<b:row>
+								<b:column>
+									<h4>Fecha:</h4>
+									<h:outputText id="compFech" value="#{gerente.obtenerFecha()}" />
+								</b:column>
+
+							</b:row>
+							<b:row>
+								<b:column>
+									<h4>Cantidad:</h4>
+									<h:outputText id="compCant" value="#{gerente.compra.cantidad}" />
+								</b:column>
+
+							</b:row>
+							<b:row>
+								<b:column>
+									<h4>Precio:</h4>
+									<h:outputText id="comPre" value="#{gerente.formatoPrecio()}" />
+								</b:column>
+
+							</b:row>
+
+						</b:well>
+
+					</b:column>
+				</b:row>
+				<b:commandButton action="index" value="Volver" offset-xs="10"
+					look="primary" />
+			</b:row>
+		</b:form>
+		<b:navBar sticky="true"
+			brand=" @2020 Raúl Luján - José Martínez 2ªDAM IES Alquerías"
+			brand-style="font-size: 12px; align-self: center;" fixed="bottom">
+			<b:navbarLinks pull="right">
+				<b:navLink style="margin-bottom: 20px; padding: 0; opacity: 0.7">
+					<b:row>
+						<b:link>
+							<b:image height="35px" library="social" name="twitter.svg"
+								style="margin-right: 10px" />
+						</b:link>
+						<b:link>
+							<b:image height="35px" library="social" name="facebook.svg"
+								style="margin-right: 10px" />
+						</b:link>
+						<b:link>
+							<b:image height="35px" library="social" name="linkedin.svg"
+								style="margin-right: 10px" />
+						</b:link>
+						<b:link>
+							<b:image height="35px" library="social" name="whatsapp.svg" />
+						</b:link>
+					</b:row>
+				</b:navLink>
+			</b:navbarLinks>
+		</b:navBar>
+	</b:container>
+
+	<b:modal id="confirmacionProd" title="Eliminar Producto"
+		styleClass="modalPseudoClass">
+		<p>¿Seguro que quiere eliminar a este Producto?</p>
+		<f:facet name="footer">
+			<b:form>
+				<b:button value="Cancelar" dismiss="modal" />
+				<b:commandButton value="Eliminar" action="#{gerente.eliminarProd()}"
+					look="primary" dismiss="modal" />
+			</b:form>
+		</f:facet>
+	</b:modal>
+
+	<b:modal id="confirmacionProv" title="Eliminar Transportista"
+		styleClass="modalPseudoClass">
+		<p>¿Seguro que quiere eliminar a este Proveedor?</p>
+		<f:facet name="footer">
+			<b:form>
+				<b:button value="Cancelar" dismiss="modal" />
+				<b:commandButton value="Eliminar" action="#{gerente.eliminarProv()}"
+					look="primary" dismiss="modal" />
+			</b:form>
+		</f:facet>
+	</b:modal>
+
+
+
+</h:body>
+</html>

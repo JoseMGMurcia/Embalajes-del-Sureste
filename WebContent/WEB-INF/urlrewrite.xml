@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"  "http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
+	<urlrewrite>
+		<rule>
+			<condition type="user-in-role">ROLE_ADMIN</condition>
+			<from>/login_success</from>
+			<to type="redirect">faces/loginGerente.xhtml</to>
+		</rule>
+
+		<rule>
+			<condition type="user-in-role">ROLE_USER</condition>
+			<from>/login_success</from>
+			<to type="redirect">faces/loginEmpleado.xhtml</to>
+		</rule>
+		
+		<rule>
+			<condition type="user-in-role">ROLE_ANONYMOUS</condition>
+			<from>/login_success</from>
+			<to type="redirect">faces/loginAnonymous.xhtml</to>
+		</rule>
+	</urlrewrite>
+

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<title>Login</title>
+</h:head>
+<h:body style="padding-top: 52px">
+	<b:navBar brand="Embalajes del Sureste" brandHref="index.xhtml"
+		fixed="top" inverse="true">
+		<b:navbarLinks pull="left">
+			<b:navLink value="Inicio" href="index.xhtml"></b:navLink>
+			<b:navLink value="Sobre nosotros" href="#about"></b:navLink>
+			<b:navLink value="Contacto" href="#contact"></b:navLink>
+		</b:navbarLinks>
+	</b:navBar>
+	<b:container>
+		<b:row style="padding-bottom: 120px">
+			<b:column offset="11">
+				<b:link href="index.xhtml">Área de empleado</b:link>
+				<b:form>
+					<b:commandButton value="AREA" action="index.html"></b:commandButton>
+				</b:form>
+			</b:column>
+
+
+
+		</b:row>
+		<b:row>
+			<b:column col-xs="full" col-sm="8" col-md="8" offset-sm="2">
+				<b:image value="./resources/images/index.png"></b:image>
+
+			</b:column>
+
+
+		</b:row>
+
+
+
+
+		<b:navBar sticky="true"
+			brand=" @2019 Raúl Luján - José Martínez 2ªDAM IES Alquerías"
+			brand-style="font-size: 12px; align-self: center;" fixed="bottom">
+			<b:navbarLinks pull="right">
+				<b:navLink>
+					<b:socialShare shares="twitter,linkedin,facebook,whatsapp"
+						disable-block="true" />
+				</b:navLink>
+			</b:navbarLinks>
+		</b:navBar>
+	</b:container>
+</h:body>
+</html>
